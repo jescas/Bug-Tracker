@@ -10,8 +10,31 @@ namespace BugTracker.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public virtual int ProjectId { get; set; }
+        public ApplicationUser()
+        {
+            HashSet<Project> projects = new HashSet<Project>();
+            HashSet<Ticket> Tickets = new HashSet<Ticket>();
+            HashSet<TicketAttachment> TicketAttachments = new HashSet<TicketAttachment>();
+            HashSet<TicketComment> TicketComments = new HashSet<TicketComment>();
+            HashSet<TicketHistory> TicketHistories = new HashSet<TicketHistory>();
+            HashSet<TicketNotification> TicketNotifications = new HashSet<TicketNotification>();
+            HashSet<TicketPriority> TicketPriorities = new HashSet<TicketPriority>();
+            HashSet<TicketStatus> TicketStatuses = new HashSet<TicketStatus>();
+            HashSet<TicketType> TicketTypes = new HashSet<TicketType>();
+            
+        }
+
         public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
+        public virtual ICollection<TicketAttachment> TicketAttachments { get; set; }
+        public virtual ICollection<TicketComment> TicketComments { get; set; }
+        public virtual ICollection<TicketHistory> TicketHistories { get; set; }
+        public virtual ICollection<TicketNotification> TicketNotifications { get; set; }
+        public virtual ICollection<TicketPriority> TicketPriorities { get; set; }
+        public virtual ICollection<TicketStatus> TicketStatuses { get; set; }
+        public virtual ICollection<TicketType> TicketTypes { get; set; }
+        
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -25,7 +48,14 @@ namespace BugTracker.Models
     {
         public DbSet<Project> Projects { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<TicketAttachment> TicketAttachments { get; set; }
+        public DbSet<TicketComment> TicketComments { get; set; }
+        public DbSet<TicketHistory> TicketHistories { get; set; }
+        public DbSet<TicketNotification> TicketNotifications { get; set; }
+        public DbSet<TicketPriority> TicketPriorities { get; set; }
+        public DbSet<TicketStatus> TicketStatuses { get; set; }
+        public DbSet<TicketType> TicketTypes { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
