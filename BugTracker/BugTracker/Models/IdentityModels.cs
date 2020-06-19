@@ -18,10 +18,6 @@ namespace BugTracker.Models
             HashSet<TicketComment> TicketComments = new HashSet<TicketComment>();
             HashSet<TicketHistory> TicketHistories = new HashSet<TicketHistory>();
             HashSet<TicketNotification> TicketNotifications = new HashSet<TicketNotification>();
-            HashSet<TicketPriority> TicketPriorities = new HashSet<TicketPriority>();
-            HashSet<TicketStatus> TicketStatuses = new HashSet<TicketStatus>();
-            HashSet<TicketType> TicketTypes = new HashSet<TicketType>();
-            
         }
 
         public virtual ICollection<Project> Projects { get; set; }
@@ -30,11 +26,7 @@ namespace BugTracker.Models
         public virtual ICollection<TicketComment> TicketComments { get; set; }
         public virtual ICollection<TicketHistory> TicketHistories { get; set; }
         public virtual ICollection<TicketNotification> TicketNotifications { get; set; }
-        public virtual ICollection<TicketPriority> TicketPriorities { get; set; }
-        public virtual ICollection<TicketStatus> TicketStatuses { get; set; }
-        public virtual ICollection<TicketType> TicketTypes { get; set; }
         
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
