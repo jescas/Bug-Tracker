@@ -15,7 +15,6 @@ namespace BugTracker.Repositories
 
             return result;
         }
-
         public ICollection<string> ProjectsForUser(int userId)
         {
             var result = db.Projects.Where(up => up.Id == userId).Select(p => p.Name);
@@ -35,18 +34,6 @@ namespace BugTracker.Repositories
             else
             {
                 throw new Exception("Project Already Exists");
-            }
-        }
-
-        public void DeleteProject(Project projectId)
-        {
-            if (!db.Projects.Contains(projectId))
-            {
-                db.Projects.Remove(projectId);
-            }
-            else
-            {
-                throw new Exception("Project Does Not Exist");
             }
         }
     }
