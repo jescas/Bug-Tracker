@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace BugTracker.Repositories
 {
     public class TicketRepository
     {
         public ApplicationDbContext db = new ApplicationDbContext();
+        
         public Ticket CreateTicket(int id, string title, string description, DateTime created, Project project, TicketType type, TicketPriority priority)
         {
             Ticket newTicket = new Ticket(id, title, description, created, project, type, priority);

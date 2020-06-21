@@ -7,6 +7,7 @@ namespace BugTracker.Models
 {
     public class Ticket
     {
+        public Ticket() { }
         public Ticket(int id, string title, string description, DateTime created, Project project, TicketType type, TicketPriority priority)
         {
             this.Id = id;
