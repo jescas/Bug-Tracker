@@ -43,5 +43,20 @@ namespace BugTracker.Repositories
                 db.SaveChanges();
             }
         }
+
+        public void EditAssignedTickets()
+        {
+
+        }
+
+        public void ViewAssignedTickets(int userId)
+        {
+            
+        }
+
+        public void AssignedProjectsTickets(int userId)
+        {
+
+        }
     }
 }
