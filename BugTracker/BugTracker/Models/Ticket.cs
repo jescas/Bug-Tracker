@@ -7,7 +7,13 @@ namespace BugTracker.Models
 {
     public class Ticket
     {
-        public Ticket() { }
+        public Ticket() 
+        {
+            this.TicketAttachments = new HashSet<TicketAttachment>();
+            this.TicketComments = new HashSet<TicketComment>();
+            this.TicketHistories = new HashSet<TicketHistory>();
+            this.TicketNotifications = new HashSet<TicketNotification>();
+        }
         public Ticket(int id, string title, string description, DateTime created, Project project, TicketType type, TicketPriority priority)
         {
             this.Id = id;
@@ -35,5 +41,11 @@ namespace BugTracker.Models
         public virtual ApplicationUser OwnerUser { get; set; }
         public virtual int AssignedToUserId { get; set; }
         public virtual ApplicationUser AssignedTo { get; set; }
+        public virtual ICollection<TicketAttachment> TicketAttachments { get; set; }
+        public virtual ICollection<TicketComment> TicketComments { get; set; }
+        public virtual ICollection<TicketHistory> TicketHistories { get; set; }
+        public virtual ICollection<TicketNotification> TicketNotifications { get; set; }
+
+
     }
 }

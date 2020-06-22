@@ -12,7 +12,7 @@ namespace BugTracker.Models
     {
         public ApplicationUser()
         {
-            HashSet<Project> projects = new HashSet<Project>();
+            HashSet<Project> Projects = new HashSet<Project>();
             HashSet<Ticket> Tickets = new HashSet<Ticket>();
             HashSet<TicketAttachment> TicketAttachments = new HashSet<TicketAttachment>();
             HashSet<TicketComment> TicketComments = new HashSet<TicketComment>();
