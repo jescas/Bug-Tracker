@@ -44,16 +44,6 @@ namespace BugTracker.Repositories
             }
         }
 
-        public void EditAssignedTickets()
-        {
-
-        }
-
-        public void ViewAssignedTickets(int userId)
-        {
-            
-        }
-
         public void AssignedProjectsTickets(int userId)
         {
 
