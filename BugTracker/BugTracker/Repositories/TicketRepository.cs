@@ -36,5 +36,20 @@ namespace BugTracker.Repositories
                 developer.Tickets.Add(ticket);
             }
         }
+
+        public void EditAssignedTickets()
+        {
+
+        }
+
+        public void ViewAssignedTickets()
+        {
+
+        }
+
+        public void AssignedProjectsTickets()
+        {
+
+        }
     }
 }
