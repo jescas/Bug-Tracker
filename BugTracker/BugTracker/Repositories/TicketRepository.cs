@@ -24,18 +24,23 @@ namespace BugTracker.Repositories
             return result;
         }
 
-        public ICollection<string> TicketsForUser(int userId)
+        public ICollection<string> GetAllTicketsPerAssignment(int userId)
         {
-            var result = db.Projects.Where(up => up.Id == userId).Select(p => p.Name);
+            var result = db.Tickets.Where(t => t.AssignedToUserId == userId).Select(t => t.Title);
             return result.ToList();
         }
-        public void AssignTicketToDeveloper(int developerId, Ticket ticket)
+        public ICollection<string> GetAllTicketsPerOwnership(int userId)
         {
-            var developer = db.Users.Find(developerId);
-
-            if(!developer.Tickets.Contains(ticket))
+            var result = db.Tickets.Where(t => t.OwnerUserId == userId).Select(t => t.Title);
+            return result.ToList();
+        }
+        [Authorize(Roles = "Project Manager")]
+        public void AssignTicketToDeveloper(ApplicationUser developer, Ticket ticket)
+        {
+            if (UserManager.checkUserRole(developer.Id, "Developer") && !developer.Tickets.Contains(ticket))
             {
                 developer.Tickets.Add(ticket);
+                db.SaveChanges();
             }
         }
     }

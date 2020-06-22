@@ -30,6 +30,10 @@ namespace BugTracker.Models
         public virtual TicketPriority TicketPriority { get; set; }
         public virtual int TicketStatusId { get; set; }
         public virtual TicketStatus TicketStatus { get; set; }
-        //continue
+        //create annotations accordingly
+        public virtual int OwnerUserId { get; set; }
+        public virtual ApplicationUser OwnerUser { get; set; }
+        public virtual int AssignedToUserId { get; set; }
+        public virtual ApplicationUser AssignedTo { get; set; }
     }
 }
