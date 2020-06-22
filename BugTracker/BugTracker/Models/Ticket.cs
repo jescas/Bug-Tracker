@@ -29,6 +29,8 @@ namespace BugTracker.Models
         public virtual TicketPriority TicketPriority { get; set; }
         public virtual int TicketStatusId { get; set; }
         public virtual TicketStatus TicketStatus { get; set; }
+        public virtual ICollection<TicketAttachment> TicketAttachments { get; set; }
+        public virtual ICollection<TicketComment> TicketComments { get; set; }
         //continue
     }
 }

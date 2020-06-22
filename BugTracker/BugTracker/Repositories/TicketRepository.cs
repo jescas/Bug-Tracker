@@ -42,12 +42,12 @@ namespace BugTracker.Repositories
 
         }
 
-        public void ViewAssignedTickets()
+        public void ViewAssignedTickets(int userId)
         {
-
+            
         }
 
-        public void AssignedProjectsTickets()
+        public void AssignedProjectsTickets(int userId)
         {
 
         }
