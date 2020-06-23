@@ -1,0 +1,14 @@
+﻿@model IQueryable<BugTracker.Models.Ticket>
+@{
+    ViewBag.Title = "ViewAssignedTickets";
+}
+
+<h2>View Assigned Tickets</h2>
+
+@foreach (var ticket in Model)
+{
+    <p>@ticket.Title</p>
+    <p>@ticket.Description</p>
+    @Html.ActionLink("Edit", "Edit", new { id = ticket.Id })
+}
+

@@ -7,12 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
+using BugTracker.Repositories;
 
 namespace BugTracker.Controllers
 {
     public class TicketsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        public TicketRepository tr = new TicketRepository();
 
         // GET: Tickets
         public ActionResult Index()
@@ -143,6 +145,13 @@ namespace BugTracker.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult ViewAssignedTickets(int developerId)
+        {
+            var result = tr.GetAllTicketsPerAssignment(developerId);
+
+            return View(result);
         }
     }
 }

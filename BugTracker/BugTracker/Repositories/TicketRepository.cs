@@ -24,14 +24,14 @@ namespace BugTracker.Repositories
             return result;
         }
 
-        public ICollection<string> GetAllTicketsPerAssignment(int userId)
+        public IQueryable<Ticket> GetAllTicketsPerAssignment(int userId)
         {
-            var result = db.Tickets.Where(t => t.AssignedToUserId == userId).Select(t => t.Title);
-            return result.ToList();
+            var result = db.Tickets.Where(t => t.AssignedToUserId == userId);
+            return result;
         }
-        public ICollection<string> GetAllTicketsPerOwnership(int userId)
+        public ICollection<string> GetAllTicketsPerOwnership(int submitterId)
         {
-            var result = db.Tickets.Where(t => t.OwnerUserId == userId).Select(t => t.Title);
+            var result = db.Tickets.Where(t => t.OwnerUserId == submitterId).Select(t => t.Title);
             return result.ToList();
         }
         [Authorize(Roles = "Project Manager")]
