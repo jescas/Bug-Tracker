@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -37,15 +38,15 @@ namespace BugTracker.Models
         public virtual int TicketStatusId { get; set; }
         public virtual TicketStatus TicketStatus { get; set; }
         //create annotations accordingly
-        public virtual int OwnerUserId { get; set; }
+        [ForeignKey("OwnerUser")]
+        public virtual string OwnerUserId { get; set; }
         public virtual ApplicationUser OwnerUser { get; set; }
-        public virtual int AssignedToUserId { get; set; }
+        [ForeignKey("AssignedTo")]
+        public virtual string AssignedToUserId { get; set; }
         public virtual ApplicationUser AssignedTo { get; set; }
         public virtual ICollection<TicketAttachment> TicketAttachments { get; set; }
         public virtual ICollection<TicketComment> TicketComments { get; set; }
         public virtual ICollection<TicketHistory> TicketHistories { get; set; }
         public virtual ICollection<TicketNotification> TicketNotifications { get; set; }
-
-
     }
 }

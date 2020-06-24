@@ -15,10 +15,11 @@ namespace BugTracker.Repositories
 
             return result;
         }
-        public ICollection<string> ProjectsForUser(int userId)
+        public IQueryable<Project> ProjectsForUser(int userId)
         {
-            var result = db.Projects.Where(up => up.Id == userId).Select(p => p.Name);
-            return result.ToList();
+            var result = db.Projects.Where(up => up.Id == userId);
+
+            return result;
         }
 
         public void AddProject(int projectId)
