@@ -15,6 +15,7 @@ namespace BugTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Projects
+        [Authorize(Roles = "Admin, Project Manager")]
         public ActionResult Index()
         {
             return View(db.Projects.ToList());
@@ -57,7 +58,7 @@ namespace BugTracker.Controllers
 
             return View(project);
         }
-
+        [Authorize(Roles = "Admin, Project Manager")]
         // GET: Projects/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,6 +77,7 @@ namespace BugTracker.Controllers
         // POST: Projects/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin, Project Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] Project project)

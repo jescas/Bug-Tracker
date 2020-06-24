@@ -1,0 +1,22 @@
+﻿@model BugTracker.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "AssignRole";
+}
+
+<h2>Assign Role</h2>
+
+@using (Html.BeginForm("AssignRole", "Account", FormMethod.Post))
+{
+    <div>
+        @Html.Label("Select Role")
+        @Html.DropDownList("Name")
+    </div>
+    <div>
+        @Html.Label("Select User")
+        @Html.DropDownList("UserName")
+    </div>
+
+    <input type="submit" />
+}
+

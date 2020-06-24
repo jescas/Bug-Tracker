@@ -17,9 +17,11 @@ namespace BugTracker.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db;
 
         public AccountController()
         {
+            db = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -170,6 +172,28 @@ namespace BugTracker.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult AssignRole()
+        {
+            ViewBag.Name = new SelectList(db.Roles.ToList(), "Name", "Name");
+            ViewBag.UserName = new SelectList(db.Users.ToList(), "UserName", "UserName");
+            return View();
+        }
+        [HttpPost]
+
+        public async Task<ActionResult> AssignRole(RegisterViewModel model, ApplicationUser user)
+        {
+            var userId = db.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
+            string updateId = "";
+            foreach (var i in userId)
+            {
+                updateId = i.ToString();
+            }
+            await this.UserManager.AddToRoleAsync(updateId, model.Name);
+
+            return RedirectToAction("Index", "UserManager");
         }
 
         //

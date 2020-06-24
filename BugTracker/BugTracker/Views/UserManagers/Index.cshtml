@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @Html.ActionLink("Create Role", "Create", "Role")
+    @Html.ActionLink("Assign Role", "AssignRole", "Account")
+    @Html.ActionLink("Create New Project", "Create", "Projects")
+    @Html.ActionLink("Assign Project to Developer", "#SOMEFUNCTION", "UserManagers") @*//still need to do*@ 
+    @Html.ActionLink("View All Projects", "Index", "Projects")
+</div>
+
