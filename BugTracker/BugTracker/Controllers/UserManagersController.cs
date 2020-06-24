@@ -14,6 +14,7 @@ namespace BugTracker.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public TicketRepository tr = new TicketRepository();
         public UserManager um = new UserManager();
+
         // GET: UserManagers
         [Authorize(Roles="Admin, Project Manager")]
         public ActionResult Index()
@@ -22,13 +23,14 @@ namespace BugTracker.Controllers
             return View(roles);
         }
         //GET
-        
+        [Authorize(Roles = "Admin, Project Manager")]
         public ActionResult Create()
         {
             var Role = new IdentityRole();
             return View(Role);
         }
-        //POS
+        //POST
+        [Authorize(Roles = "Admin, Project Manager")]
         [HttpPost]
         public ActionResult Create([Bind(Include = "Name")] IdentityRole role)
         {
