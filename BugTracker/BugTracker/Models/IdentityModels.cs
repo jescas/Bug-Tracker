@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -21,7 +22,10 @@ namespace BugTracker.Models
         }
 
         public virtual ICollection<Project> Projects { get; set; }
-        public virtual ICollection<Ticket> Tickets { get; set; }
+        [InverseProperty("OwnerUser")]
+        public virtual ICollection<Ticket> OwnerTickets { get; set; }
+        [InverseProperty("AssignedTo")]
+        public virtual ICollection<Ticket> AssignedToTickets { get; set; }
         public virtual ICollection<TicketAttachment> TicketAttachments { get; set; }
         public virtual ICollection<TicketComment> TicketComments { get; set; }
         public virtual ICollection<TicketHistory> TicketHistories { get; set; }

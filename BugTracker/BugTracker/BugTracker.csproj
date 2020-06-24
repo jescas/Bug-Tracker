@@ -261,6 +261,10 @@
     <Compile Include="Migrations\202006222209367_UpdateTableRelationships.Designer.cs">
       <DependentUpon>202006222209367_UpdateTableRelationships.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006241527556_UpdateRelationships.cs" />
+    <Compile Include="Migrations\202006241527556_UpdateRelationships.Designer.cs">
+      <DependentUpon>202006241527556_UpdateRelationships.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -347,6 +351,7 @@
     <Content Include="Views\Tickets\Edit.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
     <Content Include="Views\Tickets\ViewAssignedTickets.cshtml" />
+    <Content Include="Views\Tickets\ViewTicketsAssignedToProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -385,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006222209367_UpdateTableRelationships.resx">
       <DependentUpon>202006222209367_UpdateTableRelationships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006241527556_UpdateRelationships.resx">
+      <DependentUpon>202006241527556_UpdateRelationships.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

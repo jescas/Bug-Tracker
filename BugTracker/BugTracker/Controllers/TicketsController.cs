@@ -15,7 +15,7 @@ namespace BugTracker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         public TicketRepository tr = new TicketRepository();
-
+        public ProjectRepository pr = new ProjectRepository();
         // GET: Tickets
         public ActionResult Index()
         {
@@ -147,11 +147,18 @@ namespace BugTracker.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult ViewAssignedTickets(int developerId)
+        public ActionResult ViewAssignedTickets(string developerId)
         {
             var result = tr.GetAllTicketsPerAssignment(developerId);
 
             return View(result);
+        }
+
+        public ActionResult ViewTicketsAssignedToProjects(int userId)
+        {
+            var result = pr.ProjectsForUser(userId);
+
+            return View(result); 
         }
     }
 }
