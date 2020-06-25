@@ -1,7 +1,20 @@
-﻿
+﻿@model IQueryable<BugTracker.Models.Project>
 @{
     ViewBag.Title = "ViewTicketsAssignedToProjects";
 }
 
-<h2>ViewTicketsAssignedToProjects</h2>
+<h2>View Tickets Assigned To Projects</h2>
 
+@foreach(var project in Model)
+{
+    <p>@project.Name</p>
+
+    @foreach(var ticket in project.Tickets)
+    {
+        <p>Ticket Title: @ticket.Title</p>
+        <p>Ticket Description: @ticket.Description</p>
+        <br />
+    }
+    <br />
+    <br />
+}
