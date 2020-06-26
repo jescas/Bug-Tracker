@@ -15,9 +15,9 @@ namespace BugTracker.Repositories
 
             return result;
         }
-        public IQueryable<Project> ProjectsForUser(int userId)
+        public ICollection<Project> ProjectsForUser(string userId)
         {
-            var result = db.Projects.Where(up => up.Id == userId);
+            var result = db.Users.Where(u=>u.Id == userId).Select(p=>p.Projects).FirstOrDefault();
 
             return result;
         }

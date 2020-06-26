@@ -154,7 +154,7 @@ namespace BugTracker.Controllers
             return View(result);
         }
 
-        public ActionResult ViewTicketsAssignedToProjects(int userId)
+        public ActionResult ViewTicketsAssignedToProjects(string userId)
         {
             var result = pr.ProjectsForUser(userId);
 

@@ -1,4 +1,4 @@
-﻿@model IQueryable<BugTracker.Models.Project>
+﻿@model ICollection<BugTracker.Models.Project>
 @{
     ViewBag.Title = "ViewTicketsAssignedToProjects";
 }
@@ -9,7 +9,7 @@
 {
     <p>@project.Name</p>
 
-    @foreach(var ticket in project.Tickets)
+    foreach(var ticket in project.Tickets)
     {
         <p>Ticket Title: @ticket.Title</p>
         <p>Ticket Description: @ticket.Description</p>
