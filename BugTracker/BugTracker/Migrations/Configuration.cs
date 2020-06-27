@@ -27,11 +27,13 @@ namespace BugTracker.Migrations
                 UserManager.createRole("Submitter");
             }
 
-            //if (!context.Users.Any())
-            //{
-            //    UserManager.CreateUser("projectmanager1@mail.com");
-            //    UserManager.CreateUser("developer1@mail.com");
-            //}
+            if (!context.Users.Any())
+            {
+                UserManager.CreateUser("projectmanager1@mail.com");
+                UserManager.CreateUser("developer1@mail.com");
+                UserManager.CreateUser("submitter1@mail.com");
+                UserManager.CreateUser("admin1@mail.com");
+            }
 
             //string AdminId = context.Users.FirstOrDefault().Id;
 

@@ -175,6 +175,7 @@ namespace BugTracker.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult AssignRole()
         {
             ViewBag.Name = new SelectList(db.Roles.ToList(), "Name", "Name");
@@ -182,7 +183,7 @@ namespace BugTracker.Controllers
             return View();
         }
         [HttpPost]
-
+        [AllowAnonymous]
         public async Task<ActionResult> AssignRole(RegisterViewModel model, ApplicationUser user)
         {
             var userId = db.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);

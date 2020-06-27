@@ -1,0 +1,22 @@
+﻿@model BugTracker.Models.RegisterViewModel
+@{
+    ViewBag.Title = "AssignDeveloperToProject";
+}
+
+<h2>Assign Developer to Project</h2>
+
+@using (Html.BeginForm("AssignDeveloperToProject", "UserManager", FormMethod.Post))
+{
+    <div>
+        @Html.Label("Select Project")
+        @Html.DropDownList("ProjectName")
+    </div>
+    <div>
+        @Html.Label("Select User")
+        @Html.DropDownList("UserName")
+    </div>
+
+    <input type="submit" />
+}
+
+

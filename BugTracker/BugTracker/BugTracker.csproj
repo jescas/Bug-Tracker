@@ -262,6 +262,14 @@
     <Compile Include="Migrations\202006222209367_UpdateTableRelationships.Designer.cs">
       <DependentUpon>202006222209367_UpdateTableRelationships.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006261756366_UpdateModelProperties1.cs" />
+    <Compile Include="Migrations\202006261756366_UpdateModelProperties1.Designer.cs">
+      <DependentUpon>202006261756366_UpdateModelProperties1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006272321552_CreateUsers.cs" />
+    <Compile Include="Migrations\202006272321552_CreateUsers.Designer.cs">
+      <DependentUpon>202006272321552_CreateUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -352,6 +360,7 @@
     <Content Include="Views\Account\AssignRole.cshtml" />
     <Content Include="Views\UserManagers\Create.cshtml" />
     <Content Include="Views\Tickets\ViewTicketsAssignedToProjects.cshtml" />
+    <Content Include="Views\UserManagers\AssignDeveloperToProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -390,6 +399,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006222209367_UpdateTableRelationships.resx">
       <DependentUpon>202006222209367_UpdateTableRelationships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006261756366_UpdateModelProperties1.resx">
+      <DependentUpon>202006261756366_UpdateModelProperties1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006272321552_CreateUsers.resx">
+      <DependentUpon>202006272321552_CreateUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

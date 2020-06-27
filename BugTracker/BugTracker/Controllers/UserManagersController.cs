@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -43,15 +44,27 @@ namespace BugTracker.Controllers
             return View(role);
             
         }
-        [Authorize(Roles = "Admin, Project Manager")]
-        public ActionResult AssignUserToRole()
-        {
-            return View();
-        }
-        [Authorize(Roles = "Admin, Project Manager")]
+        [HttpGet]
         public ActionResult AssignDeveloperToProject()
         {
+            ViewBag.ProjectName = new SelectList(db.Projects.ToList(), "Name", "Name");
+            var developers = db.Roles.Where(r => r.Name == "Developer").Select(u=>u.Users).FirstOrDefault();
+            ViewBag.UserName = new SelectList(developers, "UserId", "UserName");
             return View();
+        }
+        [HttpPost]
+        public ActionResult AssignDeveloperToProject(ApplicationUser user, Project project)
+        {
+            if (ModelState.IsValid)
+            {
+                user.Projects.Add(project);
+                db.SaveChanges();
+                return RedirectToAction("Index", "UserManager");
+            }
+            ViewBag.ProjectName = new SelectList(db.Projects.ToList(), "Name", "Name");
+            var developers = db.Roles.Where(r => r.Name == "Developer").Select(u => u.Users).FirstOrDefault();
+            ViewBag.UserName = new SelectList(developers, "UserId", "UserName");
+            return View(project);
         }
     }
 }

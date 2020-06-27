@@ -34,14 +34,14 @@ namespace BugTracker.Repositories
             var result = db.Tickets.Where(t => t.OwnerUserId == submitterId).Select(t => t.Title);
             return result.ToList();
         }
-        //[Authorize(Roles = "Project Manager")]
-        //public void AssignTicketToDeveloper(ApplicationUser developer, Ticket ticket)
-        //{
-        //    if (UserManager.checkUserRole(developer.Id, "Developer") && !developer.Tickets.Contains(ticket))
-        //    {
-        //        developer.Tickets.Add(ticket);
-        //        db.SaveChanges();
-        //    }
-        //}
+        [Authorize(Roles = "Admin, Project Manager")]
+        public void AssignProjectToDeveloper(ApplicationUser developer, Ticket ticket)
+        {
+            if (UserManager.checkUserRole(developer.Id, "Developer") && !developer.AssignedToTickets.Contains(ticket))
+            {
+                developer.AssignedToTickets.Add(ticket);
+                db.SaveChanges();
+            }
+        }
     }
 }
