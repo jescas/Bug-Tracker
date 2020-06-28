@@ -5,15 +5,16 @@
 
 <h2>View Tickets Assigned To Projects</h2>
 
-@foreach(var project in Model)
+@foreach (var project in Model)
 {
     <p>@project.Name</p>
 
-    foreach(var ticket in project.Tickets)
+    foreach (var ticket in project.Tickets)
     {
         <p>Ticket Title: @ticket.Title</p>
         <p>Ticket Description: @ticket.Description</p>
         <br />
+        @Html.ActionLink("Edit", "Edit", new { id = ticket.Id })
     }
     <br />
     <br />

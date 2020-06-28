@@ -153,6 +153,7 @@ namespace BugTracker.Controllers
 
             return View(result);
         }
+
         [Authorize(Roles = "Project Manager, Developer")]
         public ActionResult ViewTicketsAssignedToProjects(string userId)
         {

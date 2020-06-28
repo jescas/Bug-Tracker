@@ -45,26 +45,35 @@ namespace BugTracker.Controllers
             
         }
         [HttpGet]
-        public ActionResult AssignDeveloperToProject()
+        public ActionResult AssignDeveloperToTicket()
         {
-            ViewBag.ProjectName = new SelectList(db.Projects.ToList(), "Name", "Name");
+            ViewBag.TicketName = new SelectList(db.Tickets.ToList(), "Title", "Title");
             var developers = db.Roles.Where(r => r.Name == "Developer").Select(u=>u.Users).FirstOrDefault();
             ViewBag.UserName = new SelectList(developers, "UserId", "UserName");
             return View();
         }
         [HttpPost]
-        public ActionResult AssignDeveloperToProject(ApplicationUser user, Project project)
+        public ActionResult AssignDeveloperToTicket(ApplicationUser user, Ticket ticket)
         {
             if (ModelState.IsValid)
             {
-                user.Projects.Add(project);
+                user.AssignedToTickets.Add(ticket);
+
+                if (!db.TicketNotifications.Any())
+                {
+                    TicketNotification notification = new TicketNotification("New Assigned Ticket", ticket.Id, user.Id);
+
+                    db.TicketNotifications.Add(notification);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index", "UserManager");
             }
-            ViewBag.ProjectName = new SelectList(db.Projects.ToList(), "Name", "Name");
+
+            ViewBag.TicketName = new SelectList(db.Projects.ToList(), "Title", "Title");
             var developers = db.Roles.Where(r => r.Name == "Developer").Select(u => u.Users).FirstOrDefault();
             ViewBag.UserName = new SelectList(developers, "UserId", "UserName");
-            return View(project);
+            return View(ticket);
         }
     }
 }

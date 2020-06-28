@@ -35,7 +35,7 @@ namespace BugTracker.Repositories
             return result.ToList();
         }
         [Authorize(Roles = "Admin, Project Manager")]
-        public void AssignProjectToDeveloper(ApplicationUser developer, Ticket ticket)
+        public void AssignTicketToDeveloper(ApplicationUser developer, Ticket ticket)
         {
             if (UserManager.checkUserRole(developer.Id, "Developer") && !developer.AssignedToTickets.Contains(ticket))
             {

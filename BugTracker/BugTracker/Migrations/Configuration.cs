@@ -35,45 +35,43 @@ namespace BugTracker.Migrations
                 UserManager.CreateUser("admin1@mail.com");
             }
 
-            //string AdminId = context.Users.FirstOrDefault().Id;
+            string AdminId = context.Users.FirstOrDefault().Id;
 
-            //if (!UserManager.checkUserRole(AdminId, "Administrator"))
-            //{
-            //    ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "Administrator1@mail.com");
+            if (!UserManager.checkUserRole(AdminId, "Administrator"))
+            {
+                ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "admin1@mail.com");
 
-            //    UserManager.AddUserToRole(AdminId, "Administrator");
-            //}
+                UserManager.AddUserToRole(AdminId, "Administrator");
+            }
 
+            string ProjectManagerId = context.Users.FirstOrDefault().Id;
 
-            //string ProjectManagerId = context.Users.FirstOrDefault().Id;
+            if (!UserManager.checkUserRole(ProjectManagerId, "Project Manager"))
+            {
+                ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "projectmanager1@mail.com");
 
-            //if (!UserManager.checkUserRole(ProjectManagerId, "Project Manager"))
-            //{
-            //    ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "projectmanager1@mail.com");
+                UserManager.AddUserToRole(ProjectManagerId, "Project Manager");
+            }
 
-            //    UserManager.AddUserToRole(ProjectManagerId, "Project Manager");
-            //}
+            string DeveloperId = context.Users.FirstOrDefault().Id;
 
-            //string DeveloperId = context.Users.FirstOrDefault().Id;
+            if (!UserManager.checkUserRole(DeveloperId, "Developer"))
+            {
+                ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "developer1@mail.com");
 
-            //if (!UserManager.checkUserRole(DeveloperId, "Developer"))
-            //{
-            //    ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "developer1@mail.com");
+                UserManager.AddUserToRole(DeveloperId, "Developer");
+            }
 
-            //    UserManager.AddUserToRole(DeveloperId, "Developer");
-            //}
+            string SubmitterId = context.Users.FirstOrDefault().Id;
 
-            //string SubmitterId = context.Users.FirstOrDefault().Id;
+            if (!UserManager.checkUserRole(SubmitterId, "Submitter"))
+            {
+                ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "submitter1@mail.com");
 
-            //if (!UserManager.checkUserRole(SubmitterId, "Submitter"))
-            //{
-            //    ApplicationUser user = context.Users.FirstOrDefault(u => u.UserName == "submitter1@mail.com");
+                UserManager.AddUserToRole(SubmitterId, "Submitter");
+            }
 
-            //    UserManager.AddUserToRole(SubmitterId, "Submitter");
-            //}
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            
         }
     }
 }
