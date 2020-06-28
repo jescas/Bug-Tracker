@@ -29,11 +29,13 @@ namespace BugTracker.Repositories
             var result = db.Tickets.Where(t => t.AssignedToUserId == userId);
             return result;
         }
-        public ICollection<string> GetAllTicketsPerOwnership(string submitterId)
+
+        public IQueryable<Ticket> GetAllTicketsPerOwnership(string submitterId)
         {
-            var result = db.Tickets.Where(t => t.OwnerUserId == submitterId).Select(t => t.Title);
-            return result.ToList();
+            var result = db.Tickets.Where(t => t.OwnerUserId == submitterId);
+            return result;
         }
+
         [Authorize(Roles = "Admin, Project Manager")]
         public void AssignTicketToDeveloper(ApplicationUser developer, Ticket ticket)
         {

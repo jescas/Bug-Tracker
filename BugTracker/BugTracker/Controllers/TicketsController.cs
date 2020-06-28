@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
@@ -146,20 +147,71 @@ namespace BugTracker.Controllers
             }
             base.Dispose(disposing);
         }
+
         [Authorize(Roles = "Project Manager, Developer")]
-        public ActionResult ViewAssignedTickets(string developerId)
+        public ActionResult ViewAssignedTickets()
         {
-            var result = tr.GetAllTicketsPerAssignment(developerId);
+            var userIdentity = User.Identity as ClaimsPrincipal;
+
+            var userIdentityClaims = userIdentity.Claims
+                .FirstOrDefault(ui => ui.Type == ClaimTypes.NameIdentifier);
+
+            if (userIdentityClaims != null)
+            {
+                var loggedUserId = userIdentityClaims.Value;
+
+                var result = tr.GetAllTicketsPerAssignment(loggedUserId);
+
+                return View(result);
+            }
+            return View("Index");
+        }
+
+        [Authorize(Roles = "Project Manager, Developer")]
+        public ActionResult ViewTicketsAssignedToProjects()
+        {
+            var userIdentity = User.Identity as ClaimsPrincipal;
+
+            var userIdentityClaims = userIdentity.Claims
+                .FirstOrDefault(ui => ui.Type == ClaimTypes.NameIdentifier);
+
+            if (userIdentityClaims != null)
+            {
+                var loggedUserId = userIdentityClaims.Value;
+
+                var result = pr.ProjectsForUser(loggedUserId);
+
+                return View(result);
+            }
+            return View("Index");
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult ViewAllTickets()
+        {
+            var result = tr.GetAllTickets();
 
             return View(result);
         }
 
-        [Authorize(Roles = "Project Manager, Developer")]
-        public ActionResult ViewTicketsAssignedToProjects(string userId)
-        {
-            var result = pr.ProjectsForUser(userId);
+        [Authorize(Roles = "Submitter")]
 
-            return View(result); 
+        public ActionResult ViewSubmitterTickets()
+        {
+            var userIdentity = User.Identity as ClaimsPrincipal;
+
+            var userIdentityClaims = userIdentity.Claims
+                .FirstOrDefault(ui => ui.Type == ClaimTypes.NameIdentifier);
+
+            if (userIdentityClaims != null)
+            {
+                var loggedUserId = userIdentityClaims.Value;
+
+                var result = tr.GetAllTicketsPerOwnership(loggedUserId);
+
+                return View(result);
+            }
+            return View("Index");
         }
     }
 }

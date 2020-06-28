@@ -9,7 +9,10 @@
 {
     <p>@ticket.Title</p>
     <p>@ticket.Description</p>
+    <br />
     @Html.ActionLink("Edit", "Edit", new { id = ticket.Id })
-    @Html.ActionLink("Add a Comment", "Create", "TicketComments", new { id = ticket.Id }) 
+    @Html.ActionLink("Add a Comment", "Create", "TicketComments", new { id = ticket.Id })
+    <br />
+    <br />
 }
 

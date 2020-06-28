@@ -17,21 +17,21 @@ namespace BugTracker.Controllers
         public UserManager um = new UserManager();
 
         // GET: UserManagers
-        [Authorize(Roles="Admin, Project Manager")]
+        [Authorize(Roles="Administrator, Project Manager")]
         public ActionResult Index()
         {
             var roles = db.Roles.ToList();
             return View(roles);
         }
         //GET
-        [Authorize(Roles = "Admin, Project Manager")]
+        [Authorize(Roles = "Administrator, Project Manager")]
         public ActionResult Create()
         {
             var Role = new IdentityRole();
             return View(Role);
         }
         //POST
-        [Authorize(Roles = "Admin, Project Manager")]
+        [Authorize(Roles = "Administrator, Project Manager")]
         [HttpPost]
         public ActionResult Create([Bind(Include = "Name")] IdentityRole role)
         {
@@ -45,7 +45,7 @@ namespace BugTracker.Controllers
             
         }
         //GET
-        [Authorize(Roles = "Admin, Project Manager")]
+        [Authorize(Roles = "Administrator, Project Manager")]
         [HttpGet]
         public ActionResult AssignDeveloperToTicket()
         {
@@ -55,7 +55,7 @@ namespace BugTracker.Controllers
             return View();
         }
         //POST
-        [Authorize(Roles = "Admin, Project Manager")]
+        [Authorize(Roles = "Administrator, Project Manager")]
         [HttpPost]
         public ActionResult AssignDeveloperToTicket(ApplicationUser user, Ticket ticket)
         {
