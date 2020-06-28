@@ -146,7 +146,7 @@ namespace BugTracker.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [Authorize(Roles = "Project Manager, Developer")]
         public ActionResult ViewAssignedTickets(string developerId)
         {
             var result = tr.GetAllTicketsPerAssignment(developerId);

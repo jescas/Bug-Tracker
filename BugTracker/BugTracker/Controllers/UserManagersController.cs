@@ -44,6 +44,8 @@ namespace BugTracker.Controllers
             return View(role);
             
         }
+        //GET
+        [Authorize(Roles = "Admin, Project Manager")]
         [HttpGet]
         public ActionResult AssignDeveloperToTicket()
         {
@@ -52,6 +54,8 @@ namespace BugTracker.Controllers
             ViewBag.UserName = new SelectList(developers, "UserId", "UserName");
             return View();
         }
+        //POST
+        [Authorize(Roles = "Admin, Project Manager")]
         [HttpPost]
         public ActionResult AssignDeveloperToTicket(ApplicationUser user, Ticket ticket)
         {

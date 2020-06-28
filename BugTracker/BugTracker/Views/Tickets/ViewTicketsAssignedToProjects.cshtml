@@ -15,6 +15,7 @@
         <p>Ticket Description: @ticket.Description</p>
         <br />
         @Html.ActionLink("Edit", "Edit", new { id = ticket.Id })
+        @Html.ActionLink("Add an Attachment", "Create", "TicketAttachments", new { id = ticket.Id })
     }
     <br />
     <br />
